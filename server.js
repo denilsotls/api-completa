@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const connectDB = require('./config/database');
+// Importar as rotas de produtos
+const productRoutes = require('./src/routes/product');
+app.use(express.json()); // Middleware para analisar o corpo das requisições em formato JSON
+
+// Usar as rotas de produtos com o prefixo /api/products
+app.use('/api/products', productRoutes);
 
 // Carregar variáveis de ambiente
 dotenv.config();
